@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: argosvcuser
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: argosvcuser-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: argo-aggregate-to-edit
+subjects:
+- kind: ServiceAccount
+  name: argosvcuser
+  namespace: default
